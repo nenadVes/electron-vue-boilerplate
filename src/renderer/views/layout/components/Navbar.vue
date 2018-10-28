@@ -10,7 +10,13 @@
       <el-dropdown-menu class="user-dropdown" slot="dropdown">
         <router-link class="inlineBlock" to="/">
           <el-dropdown-item>
-            Home
+            Organization profile
+          </el-dropdown-item>
+          <el-dropdown-item>
+            Maintenance templates
+          </el-dropdown-item>
+          <el-dropdown-item>
+            Inspection templates
           </el-dropdown-item>
         </router-link>
         <el-dropdown-item divided>

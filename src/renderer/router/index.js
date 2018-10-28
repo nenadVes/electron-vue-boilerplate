@@ -29,45 +29,90 @@ export const constantRouterMap = [
     path: '/',
     component: Layout,
     redirect: '/dashboard',
-    name: 'Dashboard',
+    name: 'Flint',
     hidden: true,
     children: [{
-      path: 'dashboard',
+      path: 'index',
+      name: 'Flint',
       component: () => import('@/views/dashboard/index')
     }]
   },
-
   {
-    path: '/example',
-    component: Layout,
-    redirect: '/example/table',
-    name: 'Example',
-    meta: { title: 'Example', icon: 'example' },
-    children: [
-      {
-        path: 'table',
-        name: 'Table',
-        component: () => import('@/views/table/index'),
-        meta: { title: 'Table', icon: 'table' }
-      },
-      {
-        path: 'tree',
-        name: 'Tree',
-        component: () => import('@/views/tree/index'),
-        meta: { title: 'Tree', icon: 'tree' }
-      }
-    ]
-  },
-
-  {
-    path: '/form',
+    path: '/dashboard',
     component: Layout,
     children: [
       {
         path: 'index',
-        name: 'Form',
-        component: () => import('@/views/form/index'),
-        meta: { title: 'Form', icon: 'form' }
+        name: 'Dashboard',
+        component: () => import('@/views/dashboard/index'),
+        meta: { title: 'Dashboard', icon: 'dashboard' }
+      }
+    ]
+  },
+  {
+    path: '/equipment',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'Equipment',
+        component: () => import('@/views/equipment/index'),
+        meta: { title: 'Equipment', icon: 'equipment' }
+      }
+    ]
+  },
+  {
+    path: '/workorders',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'Work Orders',
+        component: () => import('@/views/workorders/index'),
+        meta: { title: 'Work Orders', icon: 'form' }
+      }
+    ]
+  },
+  {
+    path: '/calendars',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'Calendars',
+        component: () => import('@/views/calendars/index'),
+        meta: { title: 'Calendars', icon: 'icons8-calendar' }
+      }
+    ]
+  },
+  {
+    path: '/employees',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'Employees',
+        component: () => import('@/views/employees/index'),
+        meta: { title: 'Employees', icon: 'user' }
+      },
+      {
+        path: 'add',
+        hidden: true,
+        name: 'AddEmployees',
+        component: () => import('@/views/employees/add'),
+        meta: { title: 'Add Employee' }
+      }
+    ]
+  },
+  {
+    path: '/reports',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'Reports',
+        component: () => import('@/views/reports/index'),
+        meta: { title: 'Reports', icon: 'example' }
       }
     ]
   },
