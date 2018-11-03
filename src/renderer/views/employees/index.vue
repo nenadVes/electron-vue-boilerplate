@@ -59,31 +59,6 @@
     data() {
       return {
         input: ''
-        // tableData: [{
-        //   number: 1,
-        //   labels: ['Maintenance', 'EX'],
-        //   name: 'Tom',
-        //   email: 'ilija89@gmail.com',
-        //   status: 'Active'
-        // }, {
-        //   number: 2,
-        //   labels: ['Maintenance', 'EX'],
-        //   name: 'Tom',
-        //   email: 'ilija89@gmail.com',
-        //   status: 'Active'
-        // }, {
-        //   number: 3,
-        //   labels: ['Maintenance', 'EX'],
-        //   name: 'Tom',
-        //   email: 'ilija89@gmail.com',
-        //   status: 'Archived'
-        // }, {
-        //   number: 4,
-        //   labels: ['Maintenance', 'EX'],
-        //   name: 'Tom',
-        //   email: 'ilija89@gmail.com',
-        //   status: 'Active'
-        // }]
       }
     },
     methods: {
@@ -96,9 +71,6 @@
       },
       buttonHandler() {
         this.$router.push('/employees/add')
-      },
-      get: function() {
-        return this.$store.state.app.employees
       }
     }
   }
