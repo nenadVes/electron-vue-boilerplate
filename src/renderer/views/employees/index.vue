@@ -9,7 +9,7 @@
       </el-row>
     </el-header>
   <el-table
-          :data="tableData"
+          :data="employees"
           style="width: 100%">
     <el-table-column
             prop="number"
@@ -17,9 +17,8 @@
             width="180">
     </el-table-column>
     <el-table-column
-            prop="name"
-            :label="$t('employees.name')"
-            :formatter="nameformatter">
+            prop="fname"
+            :label="$t('employees.name')">
     </el-table-column>
     <el-table-column
             prop="status"
@@ -36,11 +35,10 @@
     </el-table-column>
     <el-table-column
             prop="email"
-            :label="$t('employees.email')"
-            :formatter="emailformatter">
+            :label="$t('employees.email')">
     </el-table-column>
     <el-table-column
-            prop="labels"
+            prop="keywords"
             :label="$t('employees.labels')"
             width="180"
     >
@@ -50,44 +48,45 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
+
   export default {
+    computed: {
+      ...mapGetters([
+        'employees'
+      ])
+    },
     data() {
       return {
-        input: '',
-        tableData: [{
-          number: 1,
-          labels: ['Maintenance', 'EX'],
-          name: 'Tom',
-          email: 'ilija89@gmail.com',
-          status: 'Active'
-        }, {
-          number: 2,
-          labels: ['Maintenance', 'EX'],
-          name: 'Tom',
-          email: 'ilija89@gmail.com',
-          status: 'Active'
-        }, {
-          number: 3,
-          labels: ['Maintenance', 'EX'],
-          name: 'Tom',
-          email: 'ilija89@gmail.com',
-          status: 'Archived'
-        }, {
-          number: 4,
-          labels: ['Maintenance', 'EX'],
-          name: 'Tom',
-          email: 'ilija89@gmail.com',
-          status: 'Active'
-        }]
+        input: ''
+        // tableData: [{
+        //   number: 1,
+        //   labels: ['Maintenance', 'EX'],
+        //   name: 'Tom',
+        //   email: 'ilija89@gmail.com',
+        //   status: 'Active'
+        // }, {
+        //   number: 2,
+        //   labels: ['Maintenance', 'EX'],
+        //   name: 'Tom',
+        //   email: 'ilija89@gmail.com',
+        //   status: 'Active'
+        // }, {
+        //   number: 3,
+        //   labels: ['Maintenance', 'EX'],
+        //   name: 'Tom',
+        //   email: 'ilija89@gmail.com',
+        //   status: 'Archived'
+        // }, {
+        //   number: 4,
+        //   labels: ['Maintenance', 'EX'],
+        //   name: 'Tom',
+        //   email: 'ilija89@gmail.com',
+        //   status: 'Active'
+        // }]
       }
     },
     methods: {
-      nameformatter(row, column) {
-        return row.name
-      },
-      emailformatter(row, column) {
-        return row.email
-      },
       filterTag(value, row) {
         return row.status === value
       },
@@ -97,6 +96,9 @@
       },
       buttonHandler() {
         this.$router.push('/employees/add')
+      },
+      get: function() {
+        return this.$store.state.app.employees
       }
     }
   }

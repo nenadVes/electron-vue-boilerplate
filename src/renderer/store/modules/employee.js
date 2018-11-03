@@ -1,83 +1,55 @@
-import { login, logout, getInfo } from '@/api/login'
-
-const user = {
+const employee = {
   state: {
-    token: '',
-    name: '',
-    avatar: '',
-    roles: []
+    fname: '',
+    lname: '',
+    email: '',
+    number: '',
+    status: '',
+    desc: '',
+    labor: '',
+    keywords: []
   },
 
   mutations: {
-    SET_TOKEN: (state, token) => {
-      state.token = token
+    SET_FNAME: (state, fname) => {
+      state.fname = fname
     },
-    SET_NAME: (state, name) => {
-      state.name = name
+    SET_LNAME: (state, lname) => {
+      state.lname = lname
     },
-    SET_AVATAR: (state, avatar) => {
-      state.avatar = avatar
+    SET_EMAIL: (state, email) => {
+      state.email = email
     },
-    SET_ROLES: (state, roles) => {
-      state.roles = roles
+    SET_NUMBER: (state, number) => {
+      state.number = number
+    },
+    SET_STATUS: (state, status) => {
+      state.status = status
+    },
+    SET_DESC: (state, desc) => {
+      state.desc = desc
+    },
+    SET_LABOR: (state, labor) => {
+      state.labor = labor
+    },
+    SET_KEYWORDS: (state, keywords) => {
+      state.keywords = keywords
     }
   },
 
   actions: {
     // 登录
-    Login({ commit }, userInfo) {
-      const username = userInfo.username.trim()
-      return new Promise((resolve, reject) => {
-        login(username, userInfo.password).then(response => {
-          const data = response.data
-          commit('SET_TOKEN', data.token)
-          resolve()
-        }).catch(error => {
-          reject(error)
-        })
-      })
-    },
-
-    // 获取用户信息
-    GetInfo({ commit, state }) {
-      return new Promise((resolve, reject) => {
-        getInfo(state.token).then(response => {
-          const data = response.data
-          if (data.roles && data.roles.length > 0) { // 验证返回的roles是否是一个非空数组
-            commit('SET_ROLES', data.roles)
-          } else {
-            reject('getInfo: roles must be a non-null array !')
-          }
-          commit('SET_NAME', data.name)
-          commit('SET_AVATAR', data.avatar)
-          resolve(response)
-        }).catch(error => {
-          reject(error)
-        })
-      })
-    },
-
-    // 登出
-    LogOut({ commit, state }) {
-      return new Promise((resolve, reject) => {
-        logout(state.token).then(() => {
-          commit('SET_TOKEN', '')
-          commit('SET_ROLES', [])
-          resolve()
-        }).catch(error => {
-          reject(error)
-        })
-      })
-    },
-
-    // 前端 登出
-    FedLogOut({ commit }) {
-      return new Promise(resolve => {
-        commit('SET_TOKEN', '')
-        resolve()
-      })
+    PersistEmployee({ commit }, formdata) {
+      commit('SET_FNAME', formdata.fname)
+      commit('SET_LNAME', formdata.lname)
+      commit('SET_EMAIL', formdata.email)
+      commit('SET_NUMBER', formdata.number)
+      commit('SET_STATUS', formdata.status)
+      commit('SET_DESC', formdata.desc)
+      commit('SET_LABOR', formdata.labor)
+      commit('SET_KEYWORDS', formdata.keywords)
     }
   }
 }
 
-export default user
+export default employee
