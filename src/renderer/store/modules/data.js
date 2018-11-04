@@ -1,3 +1,5 @@
+import Vue from 'vue'
+
 const data = {
   state: {
     employees: [],
@@ -12,8 +14,8 @@ const data = {
     DELETE_EMPLOYEE: (state, index) => {
       state.employees.splice(index, 1)
     },
-    EDIT_EMPLOYEE: (state, employee, index) => {
-      state.employees[index] = employee
+    EDIT_EMPLOYEE: (state, { employee, index }) => {
+      Vue.set(state.employees, index, employee)
     }
   },
 
@@ -25,8 +27,8 @@ const data = {
     DeleteEmployee({ commit }, index) {
       commit('DELETE_EMPLOYEE', index)
     },
-    EditEmployee({ commit }, employee, index) {
-      commit('EDIT_EMPLOYEE', employee, index)
+    EditEmployee({ commit }, { employee, index }) {
+      commit('EDIT_EMPLOYEE', { employee, index })
     }
   }
 }

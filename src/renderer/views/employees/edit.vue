@@ -1,62 +1,10 @@
 <template>
-  <div class="app-container">
-    <el-form ref="form" v-model="employee" label-width="120px">
-      <el-row>
-        <el-col :span="12">
-          <el-form-item label="First name">
-            <el-input v-model="employee.fname"></el-input>
-          </el-form-item>
-        </el-col>
-        <el-col :span="12">
-          <el-form-item label="Last name">
-            <el-input v-model="employee.lname"></el-input>
-          </el-form-item>
-        </el-col>
-      </el-row>
-      <el-form-item label="Email">
-        <el-input prefix-icon="el-icon-message" type="email" v-model="employee.email"></el-input>
-      </el-form-item>
-      <el-form-item label="Number">
-        <el-input v-model="employee.number"></el-input>
-      </el-form-item>
-      <el-form-item label="Status">
-        <el-select v-model="employee.status" placeholder="please select status">
-          <el-option label="Active" value="active"></el-option>
-          <el-option label="Archived" value="archived"></el-option>
-        </el-select>
-      </el-form-item>
-      <el-form-item label="Labels">
-        <el-select
-              v-model="employee.keywords"
-              multiple
-              filterable
-              allow-create
-              default-first-option
-              placeholder="Choose labels">
-          <el-option
-                v-for="item in options5"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value">
-          </el-option>
-        </el-select>
-      </el-form-item>
-      <el-form-item label="Labor rate">
-        <el-input v-model="employee.labor" controls-position="right" @change="handleChange" :min="1" :max="200"><template slot="prepend">$</template></el-input>
-      </el-form-item>
-      <el-form-item label="Notes">
-        <el-input type="textarea" v-model="employee.desc"></el-input>
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="onSubmit">Update</el-button>
-        <el-button @click="onCancel">Cancel</el-button>
-      </el-form-item>
-    </el-form>
-  </div>
+  <AddEditForm :employee="employee" @onSubmit="onSubmit"></AddEditForm>
 </template>
 
 <script>
   import { mapGetters } from 'vuex'
+  import AddEditForm from '../../components/Employee/addedit'
 
   export default {
     computed: {
@@ -66,24 +14,13 @@
     },
     data() {
       return {
-        options5: [{
-          value: 'HTML',
-          label: 'HTML'
-        }, {
-          value: 'CSS',
-          label: 'CSS'
-        }, {
-          value: 'JavaScript',
-          label: 'JavaScript'
-        }],
         employee: {}
       }
     },
     methods: {
-      onSubmit() {
+      onSubmit(employee) {
         this.$message('Employee is successfully updated')
-        // this.$store.dispatch('AddEmployee', this.employee)
-        this.$store.dispatch('EditEmployee', this.employee, this.$route.query.employeeID)
+        this.$store.dispatch('EditEmployee', { employee, index: this.$route.query.employeeID })
       },
       onCancel() {
         this.$router.push('/employees/index')
@@ -91,9 +28,13 @@
       handleChange(value) {
       }
     },
+    components: {
+      AddEditForm
+    },
     mounted() {
       if ('employeeID' in this.$route.query) {
-        this.employee = this.getEmployeeById(this.$route.query.employeeID)
+        const obj = this.getEmployeeById(this.$route.query.employeeID)
+        this.employee = Object.assign({}, obj)
       }
     }
 }
