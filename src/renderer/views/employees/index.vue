@@ -43,6 +43,17 @@
             width="180"
     >
     </el-table-column>
+    <el-table-column
+            :label="$t('employees.actions')"
+            width="250">
+      <template slot-scope="scope">
+        <el-button-group
+                style="width: 100%">
+          <el-button type="primary" style="width: 45%" @click="handleEdit(scope.$index)">Edit</el-button>
+          <el-button type="danger" style="width: 45%" @click="handleDelete(scope.$index)">Delete</el-button>
+        </el-button-group>
+      </template>
+    </el-table-column>
   </el-table>
   </div>
 </template>
@@ -71,6 +82,12 @@
       },
       buttonHandler() {
         this.$router.push('/employees/add')
+      },
+      handleEdit(index) {
+        this.$router.push({ name: 'EditEmployee', query: { employeeID: index }})
+      },
+      handleDelete(index) {
+        this.$store.dispatch('DeleteEmployee', index)
       }
     }
   }

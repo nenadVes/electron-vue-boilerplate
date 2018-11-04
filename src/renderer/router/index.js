@@ -101,6 +101,13 @@ export const constantRouterMap = [
         name: 'AddEmployees',
         component: () => import('@/views/employees/add'),
         meta: { title: 'Add Employee' }
+      },
+      {
+        path: 'edit',
+        hidden: true,
+        name: 'EditEmployee',
+        component: () => import('@/views/employees/edit'),
+        meta: { title: 'Edit Employee' }
       }
     ]
   },

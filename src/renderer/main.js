@@ -31,6 +31,7 @@ const messages = {
       status: 'Status',
       email: 'Email',
       labels: 'Labels',
+      actions: 'Actions',
       buttonsearch: 'Search',
       buttonnew: 'New Employee',
       inputtext: 'Please input'

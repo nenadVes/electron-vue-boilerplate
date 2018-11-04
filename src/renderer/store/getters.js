@@ -5,6 +5,10 @@ const getters = {
   avatar: state => state.user.avatar,
   name: state => state.user.name,
   roles: state => state.user.roles,
-  employees: state => state.data.employees
+  // Employee related
+  employees: state => state.data.employees,
+  getEmployeeById: state => (employeeID) => {
+    return state.data.employees && employeeID in state.data.employees ? state.data.employees[employeeID] : false
+  }
 }
 export default getters
