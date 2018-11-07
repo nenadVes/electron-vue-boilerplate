@@ -42,7 +42,8 @@
                 <el-input type="textarea" v-model="employee.desc"></el-input>
             </el-form-item>
             <el-form-item>
-                <el-button type="primary" @click="onSubmit">Create</el-button>
+                <el-button v-if="['EditEmployee'].indexOf(this.$route.name) > -1" type="primary" @click="onSubmit">Update</el-button>
+                <el-button v-else type="primary" @click="onSubmit">Create</el-button>
                 <el-button @click="onCancel">Cancel</el-button>
             </el-form-item>
         </el-form>
@@ -65,7 +66,14 @@
         this.$router.push('/employees/index')
       },
       onSubmit() {
-        this.$emit('onSubmit', this.employee)
+        this.$refs['employee'].validate((valid) => {
+          if (valid) {
+            this.$emit('onSubmit', this.employee)
+            this.$router.push('/employees/index')
+          } else {
+            return false
+          }
+        })
       }
     }
   }

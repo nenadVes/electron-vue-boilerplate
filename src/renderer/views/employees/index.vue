@@ -18,7 +18,11 @@
     </el-table-column>
     <el-table-column
             prop="fname"
-            :label="$t('employees.name')">
+            :label="$t('employees.fname')">
+    </el-table-column>
+    <el-table-column
+            prop="lname"
+            :label="$t('employees.lname')">
     </el-table-column>
     <el-table-column
             prop="status"

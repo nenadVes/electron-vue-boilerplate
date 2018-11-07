@@ -27,7 +27,8 @@ const messages = {
     employees: {
       title: 'Employees',
       number: 'Number',
-      name: 'Name',
+      fname: 'First Name',
+      lname: 'Last Name',
       status: 'Status',
       email: 'Email',
       labels: 'Labels',
