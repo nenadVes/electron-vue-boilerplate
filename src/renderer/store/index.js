@@ -2,17 +2,19 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import app from './modules/app'
 import user from './modules/user'
-import data from './modules/data'
+import employees from './modules/employees'
 import getters from './getters'
 import localForage from 'localforage'
 import { asyncForEach } from './../utils/helpers'
 
 Vue.use(Vuex)
 
+const PRESERVABLE_STATES = ['employees']
+
 const store = new Vuex.Store({
   modules: {
     app,
-    data,
+    employees,
     user
   },
   getters,
@@ -23,8 +25,9 @@ const store = new Vuex.Store({
   },
   mutations: {
     INIT_STATE: (state) => {
-      asyncForEach(Object.keys(state.data), async(entity) => {
-        state.data[entity] = await localForage.getItem(entity)
+      asyncForEach(PRESERVABLE_STATES, async(entity) => {
+        const entityData = await localForage.getItem(entity)
+        state[entity][entity] = entityData || []
       })
     }
   }

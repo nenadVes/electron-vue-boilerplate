@@ -33,7 +33,6 @@ export const constantRouterMap = [
     hidden: true,
     children: [{
       path: 'index',
-      name: 'Flint',
       component: () => import('@/views/dashboard/index')
     }]
   },

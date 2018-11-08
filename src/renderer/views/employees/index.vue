@@ -9,7 +9,7 @@
       </el-row>
     </el-header>
   <el-table
-          :data="employees"
+          :data="activeEmployees"
           style="width: 100%">
     <el-table-column
             prop="number"
@@ -53,8 +53,8 @@
       <template slot-scope="scope">
         <el-button-group
                 style="width: 100%">
-          <el-button type="primary" style="width: 45%" @click="handleEdit(scope.$index)">Edit</el-button>
-          <el-button type="danger" style="width: 45%" @click="handleDelete(scope.$index)">Delete</el-button>
+          <el-button type="primary" style="width: 45%" @click="handleEdit(scope.row.id)">Edit</el-button>
+          <el-button type="danger" style="width: 45%" @click="handleDelete(scope.row.id)">Delete</el-button>
         </el-button-group>
       </template>
     </el-table-column>
@@ -63,13 +63,11 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
-
   export default {
     computed: {
-      ...mapGetters([
-        'employees'
-      ])
+      activeEmployees() {
+        return this.$store.getters['activeEmployees']()
+      }
     },
     data() {
       return {
@@ -87,11 +85,11 @@
       buttonHandler() {
         this.$router.push('/employees/add')
       },
-      handleEdit(index) {
-        this.$router.push({ name: 'EditEmployee', query: { employeeID: index }})
+      handleEdit(id) {
+        this.$router.push({ name: 'EditEmployee', query: { employeeID: id }})
       },
-      handleDelete(index) {
-        this.$store.dispatch('DeleteEmployee', index)
+      handleDelete(id) {
+        this.$store.dispatch('DeleteEmployee', id)
       }
     }
   }

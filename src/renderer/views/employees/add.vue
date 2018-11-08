@@ -4,21 +4,13 @@
 
 <script>
 import AddEditForm from '../../components/Employee/addedit'
+import { Employee } from '../../models/employee.model'
 
 export default {
   name: 'Employee',
   data() {
     return {
-      employee: {
-        fname: '',
-        lname: '',
-        email: '',
-        number: '',
-        status: '',
-        desc: '',
-        labor: '',
-        keywords: []
-      }
+      employee: new Employee({}, this.$store.getters['employees'])
     }
   },
   methods: {

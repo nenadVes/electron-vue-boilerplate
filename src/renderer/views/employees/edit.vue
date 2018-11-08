@@ -20,12 +20,10 @@
     methods: {
       onSubmit(employee) {
         this.$message('Employee is successfully updated')
-        this.$store.dispatch('EditEmployee', { employee, index: this.$route.query.employeeID })
+        this.$store.dispatch('EditEmployee', { employee })
       },
       onCancel() {
         this.$router.push('/employees/index')
-      },
-      handleChange(value) {
       }
     },
     components: {
@@ -33,8 +31,7 @@
     },
     mounted() {
       if ('employeeID' in this.$route.query) {
-        const obj = this.getEmployeeById(this.$route.query.employeeID)
-        this.employee = Object.assign({}, obj)
+        this.employee = this.getEmployeeById(this.$route.query.employeeID)
       }
     }
 }

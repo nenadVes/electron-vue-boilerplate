@@ -61,6 +61,8 @@ const i18n = new VueI18n({
   messages // set locale messages
 })
 
+router.replace('/')
+
 new Vue({
   components: { App },
   router,
