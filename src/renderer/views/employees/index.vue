@@ -4,8 +4,8 @@
       <el-row>
         <el-col :span="6">{{ $t("employees.title") }}</el-col>
         <el-col :span="10"><el-input :placeholder="$t('employees.inputtext')" v-model="input"></el-input></el-col>
-        <el-col :span="4"><el-button type="primary" icon="el-icon-search">{{ $t("employees.buttonsearch") }}</el-button></el-col>
-        <el-col :span="4"><el-button type="primary" @click=buttonHandler>{{ $t("employees.buttonnew") }}</el-button></el-col>
+        <el-col :span="4"><el-button type="primary" icon="el-icon-search">{{ $t("employees.button.search") }}</el-button></el-col>
+        <el-col :span="4"><el-button type="primary" @click=buttonHandler>{{ $t("employees.button.new") }}</el-button></el-col>
       </el-row>
     </el-header>
   <el-table
@@ -53,8 +53,8 @@
       <template slot-scope="scope">
         <el-button-group
                 style="width: 100%">
-          <el-button type="primary" style="width: 45%" @click="handleEdit(scope.row.id)">Edit</el-button>
-          <el-button type="danger" style="width: 45%" @click="handleDelete(scope.row.id)">Delete</el-button>
+          <el-button type="primary" style="width: 45%" @click="handleEdit(scope.row.id)">{{ $t("employees.button.edit") }}</el-button>
+          <el-button type="danger" style="width: 45%" @click="handleDelete(scope.row.id)">{{ $t("employees.button.delete") }}</el-button>
         </el-button-group>
       </template>
     </el-table-column>

@@ -1,6 +1,4 @@
-/**
- * Created by jiachenpan on 16/11/18.
- */
+import { i18n } from '../language/lang'
 
 export function isvalidUsername(str) {
   const valid_map = ['admin', 'editor']
@@ -31,3 +29,28 @@ export function validatAlphabets(str) {
   return reg.test(str)
 }
 
+export function validateText(rule, value, callback) {
+  if (value === '' && rule.required) {
+    callback(new Error(i18n.tc('validation.required')))
+  } else if (value !== '' && value.length < rule.min) {
+    callback(new Error(i18n.tc('validation.text.must1') + ' ' + rule.min + ' ' + i18n.tc('validation.text.must3')))
+  } else if (value !== '' && value.length > rule.max) {
+    callback(new Error(i18n.tc('validation.text.must2') + ' ' + rule.max + ' ' + i18n.tc('validation.text.must3')))
+  } else {
+    callback()
+  }
+}
+
+export function validateNumber(rule, value, callback) {
+  if (value === '' && rule.required) {
+    callback(new Error(i18n.tc('validation.required')))
+  } else if (!/^[0-9]*$/.test(value)) {
+    callback(new Error(i18n.tc('validation.number.invalid')))
+  } else if (value !== '' && value < rule.min) {
+    callback(new Error(i18n.tc('validation.number.must1') + ' ' + rule.min))
+  } else if (value !== '' && value > rule.max) {
+    callback(new Error(i18n.tc('validation.number.must2') + ' ' + rule.max))
+  } else {
+    callback()
+  }
+}
