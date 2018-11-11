@@ -49,18 +49,6 @@ export const constantRouterMap = [
     ]
   },
   {
-    path: '/equipment',
-    component: Layout,
-    children: [
-      {
-        path: 'index',
-        name: 'Equipment',
-        component: () => import('@/views/equipment/index'),
-        meta: { title: 'Equipment', icon: 'equipment' }
-      }
-    ]
-  },
-  {
     path: '/workorders',
     component: Layout,
     children: [
@@ -107,6 +95,32 @@ export const constantRouterMap = [
         name: 'EditEmployee',
         component: () => import('@/views/employees/edit'),
         meta: { title: 'Edit Employee' }
+      }
+    ]
+  },
+  {
+    path: '/equipment',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'Equipment',
+        component: () => import('@/views/equipment/index'),
+        meta: { title: 'Equipment', icon: 'equipment' }
+      },
+      {
+        path: 'add',
+        hidden: true,
+        name: 'AddEquipment',
+        component: () => import('@/views/equipment/add'),
+        meta: { title: 'Add Equipment' }
+      },
+      {
+        path: 'edit',
+        hidden: true,
+        name: 'EditEquipment',
+        component: () => import('@/views/equipment/edit'),
+        meta: { title: 'Edit Equipment' }
       }
     ]
   },

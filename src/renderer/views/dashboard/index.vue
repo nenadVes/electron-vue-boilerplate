@@ -3,10 +3,10 @@
     <el-card class="box-card">
       <div slot="header" class="clearfix" style="margin: 0px 0px 30px 0px">
         <div class="floatLeft">
-          <el-button @click="equipmentShow()"><p>Equipment - {{2}}</p></el-button>
+          <el-button @click="equipmentShow()"><p>Equipment - {{ this.tableDataEquipment.length }}</p></el-button>
         </div>
           <div class="floatLeft">
-            <el-button style="margin-left: 15px" @click="workOrdersShow()"><p>Work orders - {{2}}</p></el-button>
+            <el-button style="margin-left: 15px" @click="workOrdersShow()"><p>Work orders - {{ this.tableDataWO.length }}</p></el-button>
           </div>
       </div>
       <div>
@@ -104,13 +104,15 @@
       </el-table>
       <br>
       <el-row>
-        <div class="block">
+        <!-- <div class="block">
           <span class="demonstration">Page: </span>
           <el-pagination
             layout="prev, pager, next"
-            :page-size="5">
+            :page-size="5"
+            :total="rowNumber"
+            :current-change="paginate(1)">
           </el-pagination>
-        </div>
+        </div> -->
       </el-row>
     </el-card>
   </div>
@@ -122,11 +124,40 @@ export default {
   name: 'DashBoard',
   data() {
     return {
-      pageNumber: 0,
-      currentPage: 1,
+      rowNumber: 0,
       tableTitle: 'Equipment resources',
       equipmentShowing: true,
+      tempCollection: [
+        {
+          quipment: '',
+          task: ''
+        }
+      ],
       tableDataEquipment: [
+        {
+          equipment: 'Traktor',
+          task: 'Due'
+        },
+        {
+          equipment: 'Traktor',
+          task: 'Due'
+        },
+        {
+          equipment: 'Traktor',
+          task: 'Due'
+        },
+        {
+          equipment: 'Traktor',
+          task: 'Due'
+        },
+        {
+          equipment: 'Traktor',
+          task: 'Due'
+        },
+        {
+          equipment: 'Traktor',
+          task: 'Due'
+        },
         {
           equipment: 'Traktor',
           task: 'Due'
@@ -138,108 +169,126 @@ export default {
       ],
       tableDataWO: [
         {
-          number: 'Otici u WC',
+          number: 'Nestooo',
           due: 'Petar',
-          assignees: 'Otici u WC',
+          assignees: 'Nestooo',
           equipment: 'Petar',
-          progress: 'Otici u WC',
+          progress: 'Nestooo',
           status: 'Petar'
         },
         {
-          number: 'Otici u WC',
+          number: 'Nestooo',
           due: 'Petar',
-          assignees: 'Otici u WC',
+          assignees: 'Nestooo',
           equipment: 'Petar',
-          progress: 'Otici u WC',
+          progress: 'Nestooo',
           status: 'Petar'
         },
         {
-          number: 'Otici u WC',
+          number: 'Nestooo',
           due: 'Petar',
-          assignees: 'Otici u WC',
+          assignees: 'Nestooo',
           equipment: 'Petar',
-          progress: 'Otici u WC',
+          progress: 'Nestooo',
           status: 'Petar'
         },
         {
-          number: 'Otici u WC',
+          number: 'Nestooo',
           due: 'Petar',
-          assignees: 'Otici u WC',
+          assignees: 'Nestooo',
           equipment: 'Petar',
-          progress: 'Otici u WC',
+          progress: 'Nestooo',
           status: 'Petar'
         },
         {
-          number: 'Otici u WC',
+          number: 'Nestooo',
           due: 'Petar',
-          assignees: 'Otici u WC',
+          assignees: 'Nestooo',
           equipment: 'Petar',
-          progress: 'Otici u WC',
+          progress: 'Nestooo',
           status: 'Petar'
         },
         {
-          number: 'Otici u WC',
+          number: 'Nestooo',
           due: 'Petar',
-          assignees: 'Otici u WC',
+          assignees: 'Nestooo',
           equipment: 'Petar',
-          progress: 'Otici u WC',
+          progress: 'Nestooo',
           status: 'Petar'
         },
         {
-          number: 'Otici u WC',
+          number: 'Nestooo',
           due: 'Petar',
-          assignees: 'Otici u WC',
+          assignees: 'Nestooo',
           equipment: 'Petar',
-          progress: 'Otici u WC',
+          progress: 'Nestooo',
           status: 'Petar'
         },
         {
-          number: 'Otici u WC',
+          number: 'Nestooo',
           due: 'Petar',
-          assignees: 'Otici u WC',
+          assignees: 'Nestooo',
           equipment: 'Petar',
-          progress: 'Otici u WC',
+          progress: 'Nestooo',
           status: 'Petar'
         },
         {
-          number: 'Otici u WC',
+          number: 'Nestooo',
           due: 'Petar',
-          assignees: 'Otici u WC',
+          assignees: 'Nestooo',
           equipment: 'Petar',
-          progress: 'Otici u WC',
+          progress: 'Nestooo',
           status: 'Petar'
         },
         {
-          number: 'Otici u WC',
+          number: 'Nestooo',
           due: 'Petar',
-          assignees: 'Otici u WC',
+          assignees: 'Nestooo',
           equipment: 'Petar',
-          progress: 'Otici u WC',
+          progress: 'Nestooo',
           status: 'Petar'
         },
         {
-          number: 'Otici u WC',
+          number: 'Nestooo',
           due: 'Petar',
-          assignees: 'Otici u WC',
+          assignees: 'Nestooo',
           equipment: 'Petar',
-          progress: 'Otici u WC',
+          progress: 'Nestooo',
           status: 'Petar'
         }
       ]
     }
   },
   mounted() {
-
+    this.rowNumber = this.tableDataEquipment.length
   },
   methods: {
     equipmentShow() {
       this.equipmentShowing = true
       this.tableTitle = 'Equipment resources'
+      this.rowNumber = this.tableDataEquipment.length
     },
     workOrdersShow() {
       this.equipmentShowing = false
       this.tableTitle = 'Work Orders'
+      this.rowNumber = this.tableDataWO.length
     },
+    // paginate(numbClicked) {
+    //   console.log(numbClicked)
+    //   console.log('pozvala se metoda')
+    //   if (this.tableTitle === 'Equipment resources') {
+    //     console.log('prvi if')
+    //     if (this.tableDataEquipment.length > 5) {
+    //       console.log('drugi if')
+    //       for (let i = numbClicked === 1 ? 0 : (numbClicked - 1) * 5; i < 5 * numbClicked; i++) {
+    //         console.log(this.tableDataEquipment[i])
+    //         if (this.tableDataEquipment[i] !== null) {
+    //           this.tempCollection[i] = this.tableDataEquipment[i]
+    //         }
+    //       }
+    //     }
+    //   }
+    // },
     createWorkOrder() {
       console.log('Creating WO!')
     }

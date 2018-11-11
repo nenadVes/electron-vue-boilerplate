@@ -20,3 +20,24 @@ export const employeeRules = {
     { validator: validateNumber, min: 0, required: false, trigger: 'blur' }
   ]
 }
+
+export const equipmentRules = {
+  description: [
+    { validator: validateText, min: 2, max: 15, required: true, trigger: 'blur' }
+  ],
+  make: [
+    { validator: validateText, min: 2, max: 15, required: true, trigger: 'blur' }
+  ],
+  model: [
+    { type: 'email', required: true, message: 'Please enter a valid email', trigger: 'change' }
+  ],
+  serialNumber: [
+    { validator: validateNumber, min: 0, required: true, trigger: 'blur' }
+  ],
+  status: [
+    { required: true, message: 'Please pick a status', trigger: 'blur' }
+  ],
+  assetType: [
+    { validator: validateText, min: 2, max: 15, required: true, trigger: 'blur' }
+  ]
+}

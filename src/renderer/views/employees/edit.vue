@@ -20,7 +20,9 @@
     methods: {
       onSubmit(employee) {
         this.$message('Employee is successfully updated')
-        this.$store.dispatch('EditEmployee', { employee })
+        // this.$store.dispatch('AddEmployee', this.employee)
+        this.$store.dispatch('EditEmployee', this.employee, this.$route.query.employeeID)
+        this.$router.push('/employees/index')
       },
       onCancel() {
         this.$router.push('/employees/index')

@@ -17,6 +17,12 @@ export default {
     onSubmit() {
       this.$message('Employee is successfully created')
       this.$store.dispatch('AddEmployee', this.employee)
+      this.$router.push('/employees/index')
+    },
+    onCancel() {
+      this.$router.push('/employees/index')
+    },
+    handleChange(value) {
     }
   },
   components: {

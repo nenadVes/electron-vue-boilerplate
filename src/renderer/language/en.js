@@ -35,14 +35,20 @@ export const en = {
     }
   },
   equipment: {
-    title: 'Employees',
-    column1: 'Number',
-    column2: 'Name',
-    column3: 'Status',
-    column4: 'Email',
-    column5: 'Labels',
-    buttonsearch: 'Search',
-    buttonnew: 'New Employee',
-    inputtext: 'Please input'
+    title: 'Equipment',
+    equipment: 'Equipment',
+    keywords: 'Keywords',
+    tasks: 'Tasks',
+    actions: 'Actions',
+    button: {
+      search: 'Search',
+      new: 'New Equipment',
+      create: 'Create Equipment',
+      update: 'Update Equipment',
+      cancel: 'Cancel',
+      edit: 'Edit',
+      delete: 'Delete'
+    },
+    inputText: 'Please input'
   }
 }
