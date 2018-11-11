@@ -3,7 +3,7 @@
     <el-header><br>
       <el-row>
         <el-col :span="6">{{ $t("employees.title") }}</el-col>
-        <el-col :span="10"><el-input :placeholder="$t('employees.inputtext')" v-model="input"></el-input></el-col>
+        <el-col :span="10"><el-input :placeholder="$t('employees.inputText')" v-model="input"></el-input></el-col>
         <el-col :span="4"><el-button type="primary" icon="el-icon-search">{{ $t("employees.button.search") }}</el-button></el-col>
         <el-col :span="4"><el-button type="primary" @click=buttonHandler>{{ $t("employees.button.new") }}</el-button></el-col>
       </el-row>
