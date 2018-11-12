@@ -31,8 +31,8 @@
       <template slot-scope="scope">
         <el-button-group
                 style="width: 100%">
-          <el-button type="primary" style="width: 45%" @click="handleEdit(scope.$index)">Edit</el-button>
-          <el-button type="danger" style="width: 45%" @click="handleDelete(scope.$index)">Delete</el-button>
+          <el-button type="primary" style="width: 45%" @click="handleEdit(scope.row.id)">Edit</el-button>
+          <el-button type="danger" style="width: 45%" @click="handleDelete(scope.row.id)">Delete</el-button>
         </el-button-group>
       </template>
     </el-table-column>

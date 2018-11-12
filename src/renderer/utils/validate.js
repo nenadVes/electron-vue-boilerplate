@@ -30,9 +30,7 @@ export function validatAlphabets(str) {
 }
 
 export function validateText(rule, value, callback) {
-  if (value === '' && !rule.required) {
-    return
-  } else if (value === '' && rule.required) {
+  if (value === '' && rule.required) {
     callback(new Error(i18n.tc('validation.required')))
   } else if (value !== '' && value.length < rule.min) {
     callback(new Error(i18n.tc('validation.text.must1') + ' ' + rule.min + ' ' + i18n.tc('validation.text.must3')))
@@ -44,9 +42,7 @@ export function validateText(rule, value, callback) {
 }
 
 export function validateNumber(rule, value, callback) {
-  if (value === '' && !rule.required) {
-    return
-  } else if (value === '' && rule.required) {
+  if (value === '' && rule.required) {
     callback(new Error(i18n.tc('validation.required')))
   } else if (!/^[0-9]*$/.test(value)) {
     callback(new Error(i18n.tc('validation.number.invalid')))

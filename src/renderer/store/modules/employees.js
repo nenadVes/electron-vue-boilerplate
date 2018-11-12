@@ -30,7 +30,7 @@ const employees = {
       commit('EDIT_EMPLOYEE', employee, index)
       saveToLocalForage(state.employees)
     },
-    EditEmployee({ commit, state }, { employee }) {
+    EditEmployee({ commit, state }, employee) {
       commit('EDIT_EMPLOYEE', { employee, index: _findIndex(state.employees, { id: employee.id }) })
       saveToLocalForage(state.employees)
     }

@@ -1,15 +1,8 @@
 <template>
   <div class="app-container">
     <el-form ref="equipment" :rules="rules" :model="equipment" label-width="120px">
-      <el-row>
-        <el-col :span="12">
-          <el-form-item prop="id" label="UnitID">
-            <el-input v-model="equipment.unitId"></el-input>
-          </el-form-item>
-        </el-col>
-      </el-row>
       <el-form-item prop="description" label="Description">
-        <el-input type="email" v-model="equipment.description"></el-input>
+        <el-input v-model="equipment.description"></el-input>
       </el-form-item>
       <el-form-item prop="year" label="Year">
         <el-input v-model="equipment.year"></el-input>
@@ -27,7 +20,7 @@
         <el-select v-model="equipment.assetType" placeholder="Please select Asset type">
           <el-option label="SomeAsset" value="active"></el-option>
         </el-select>
-      </el-form-item>   
+      </el-form-item>
       <el-form-item prop="status" label="Status">
         <el-select v-model="equipment.status" placeholder="Please select Status">
           <el-option label="SomeEnum" value="active"></el-option>
@@ -38,8 +31,18 @@
           <el-option label="SomeChecklist" value="active"></el-option>
         </el-select>
       </el-form-item>
+      <el-form-item prop="labels" :label="$t('equipment.labels')">
+        <el-select
+                v-model="equipment.keywords"
+                multiple
+                filterable
+                allow-create
+                default-first-option
+                placeholder="Choose labels">
+        </el-select>
+      </el-form-item>
       <el-form-item prop="notes" label="Notes">
-          <el-input type="textarea" v-model="equipment.notes"></el-input>   
+          <el-input type="textarea" v-model="equipment.notes"></el-input>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSubmit">Create</el-button>

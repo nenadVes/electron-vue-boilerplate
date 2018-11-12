@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import AddEditForm from '../../components/Equipment/addEdit'
+import AddEditForm from '../../components/Equipment/addedit'
 import { Equipment } from '../../models/equipment.model'
 
 export default {

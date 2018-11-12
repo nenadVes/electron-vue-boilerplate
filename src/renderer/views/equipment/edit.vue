@@ -18,9 +18,9 @@
       }
     },
     methods: {
-      onSubmit(equipment) {
+      onSubmit() {
         this.$message('Equipment is successfully updated')
-        this.$store.dispatch('EditEquipment', this.equipment, this.$route.query.equipmentID)
+        this.$store.dispatch('EditEquipment', this.equipment)
         this.$router.push('/equipment/index')
       },
       onCancel() {

@@ -18,10 +18,9 @@
       }
     },
     methods: {
-      onSubmit(employee) {
+      onSubmit() {
         this.$message('Employee is successfully updated')
-        // this.$store.dispatch('AddEmployee', this.employee)
-        this.$store.dispatch('EditEmployee', this.employee, this.$route.query.employeeID)
+        this.$store.dispatch('EditEmployee', this.employee)
         this.$router.push('/employees/index')
       },
       onCancel() {

@@ -14,6 +14,7 @@ export class Equipment extends BaseModel {
     this.assetType = data.assetType || ''
     this.checkList = data.checkList || ''
     this.notes = data.notes || ''
+    this.keywords = data.keywords || ''
     this.deleted_at = data.deleted_at || ''
   }
 

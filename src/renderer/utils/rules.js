@@ -8,7 +8,7 @@ export const employeeRules = {
     { validator: validateText, min: 2, max: 15, required: true, trigger: 'blur' }
   ],
   email: [
-    { type: 'email', required: true, message: 'Please enter a valid email', trigger: 'change' }
+    { type: 'email', required: true, message: 'Please enter a valid email', trigger: 'blur' }
   ],
   number: [
     { validator: validateNumber, min: 0, required: true, trigger: 'blur' }
@@ -29,7 +29,7 @@ export const equipmentRules = {
     { validator: validateText, min: 2, max: 15, required: true, trigger: 'blur' }
   ],
   model: [
-    { type: 'email', required: true, message: 'Please enter a valid email', trigger: 'change' }
+    { type: 'email', required: true, message: 'Please enter a valid email', trigger: 'blur' }
   ],
   serialNumber: [
     { validator: validateNumber, min: 0, required: true, trigger: 'blur' }

@@ -30,7 +30,7 @@ const equipment = {
       commit('EDIT_EQUIPMENT', equipment, index)
       saveToLocalForage(state.equipment)
     },
-    EditEquipment({ commit, state }, { equipment }) {
+    EditEquipment({ commit, state }, equipment) {
       commit('EDIT_EQUIPMENT', { equipment, index: _findIndex(state.equipment, { id: equipment.id }) })
       saveToLocalForage(state.equipment)
     }
@@ -39,7 +39,7 @@ const equipment = {
   getters: {
     equipment: state => state.equipment,
     activeEquipment: state => () => state.equipment.filter(equipment => !equipment.deleted_at).map(equipment => new Equipment(equipment, state.equipment)),
-    getEquipment: state => (id) => new Equipment(_find(state.equipment, { id }), state.equipment)
+    getEquipmentById: state => (id) => new Equipment(_find(state.equipment, { id }), state.equipment)
   }
 }
 
