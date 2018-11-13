@@ -23,7 +23,9 @@
       </el-form-item>
       <el-form-item prop="status" :label="$t('equipment.status')">
         <el-select v-model="equipment.status" :placeholder="$t('equipment.placeholder.status')">
-          <el-option label="SomeEnum" value="active"></el-option>
+          <el-option label="Active" value="active"></el-option>
+          <el-option label="Unavailable" value="active"></el-option>
+          <el-option label="Disposed" value="active"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item prop="checkList" :label="$t('equipment.checklist')">

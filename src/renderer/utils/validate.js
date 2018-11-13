@@ -54,3 +54,31 @@ export function validateNumber(rule, value, callback) {
     callback()
   }
 }
+
+export function validateDate(rule, value, callback) {
+  if (value === '' && rule.required) {
+    callback(new Error(i18n.tc('validation.required')))
+  } else if (rule.yearOnly && !/^(19|20)\d{2}$/.test(value)) {
+    callback(new Error(i18n.tc('validation.date.year')))
+  } else {
+    callback()
+  }
+}
+
+export function validateEmail(rule, value, callback) {
+  if (value === '' && rule.required) {
+    callback(new Error(i18n.tc('validation.required')))
+  } else if (value !== '' && !/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(value)) {
+    callback(new Error(i18n.tc('validation.email')))
+  } else {
+    callback()
+  }
+}
+
+export function validateSelect(rule, value, callback) {
+  if (value === '' && rule.required) {
+    callback(new Error(i18n.tc('validation.required')))
+  } else {
+    callback()
+  }
+}

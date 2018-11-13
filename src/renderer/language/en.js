@@ -32,7 +32,11 @@ export const en = {
       must1: 'Must be greater than',
       must2: 'Must be lesser than',
       invalid: 'Please insert a number'
-    }
+    },
+    date: {
+      year: 'Please insert a valid year'
+    },
+    email: 'Please insert a valid email'
   },
   equipment: {
     title: 'Equipment',
