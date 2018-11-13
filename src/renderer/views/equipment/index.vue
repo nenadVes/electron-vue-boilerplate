@@ -13,12 +13,12 @@
           style="width: 100%">
     <el-table-column
             prop="description"
-            :label="$t('equipment.equipment')"
+            :label="$t('equipment.description')"
             width="180">
     </el-table-column>
     <el-table-column
             prop="keywords"
-            :label="$t('equipment.keywords')">
+            :label="$t('equipment.labels')">
     </el-table-column>
     <el-table-column
             prop="tasks"

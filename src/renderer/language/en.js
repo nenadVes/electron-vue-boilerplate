@@ -36,10 +36,18 @@ export const en = {
   },
   equipment: {
     title: 'Equipment',
-    equipment: 'Equipment',
-    keywords: 'Keywords',
+    description: 'Description',
     tasks: 'Tasks',
+    year: 'Year',
+    make: 'Make',
+    model: 'Model',
+    notes: 'Notes',
     actions: 'Actions',
+    serialNumber: 'Serial Number',
+    assetType: 'Asset Type',
+    status: 'Status',
+    checklist: 'Check List',
+    labels: 'Labels',
     button: {
       search: 'Search',
       new: 'New Equipment',
@@ -48,6 +56,12 @@ export const en = {
       cancel: 'Cancel',
       edit: 'Edit',
       delete: 'Delete'
+    },
+    placeholder: {
+      checklist: 'Choose a checklist',
+      assetType: 'Choose an asset type',
+      status: 'Choose a status',
+      labels: 'Choose labels'
     },
     inputText: 'Please input'
   }

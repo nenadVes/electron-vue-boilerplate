@@ -1,33 +1,33 @@
 <template>
   <div class="app-container">
     <el-form ref="equipment" :rules="rules" :model="equipment" label-width="120px">
-      <el-form-item prop="description" label="Description">
+      <el-form-item prop="description" :label="$t('equipment.description')">
         <el-input v-model="equipment.description"></el-input>
       </el-form-item>
-      <el-form-item prop="year" label="Year">
+      <el-form-item prop="year" :label="$t('equipment.year')">
         <el-input v-model="equipment.year"></el-input>
       </el-form-item>
-      <el-form-item prop="make" label="Make">
+      <el-form-item prop="make" :label="$t('equipment.make')">
         <el-input v-model="equipment.make"></el-input>
       </el-form-item>
-      <el-form-item prop="model" label="Model">
+      <el-form-item prop="model" :label="$t('equipment.model')">
         <el-input v-model="equipment.model"></el-input>
       </el-form-item>
-      <el-form-item prop="serialNumber" label="Serial Number">
+      <el-form-item prop="serialNumber" :label="$t('equipment.serialNumber')">
         <el-input v-model="equipment.serialNumber"></el-input>
       </el-form-item>
-      <el-form-item prop="assetType" label="Asset type">
-        <el-select v-model="equipment.assetType" placeholder="Please select Asset type">
+      <el-form-item prop="assetType" :label="$t('equipment.assetType')">
+        <el-select v-model="equipment.assetType" :placeholder="$t('equipment.placeholder.assetType')">
           <el-option label="SomeAsset" value="active"></el-option>
         </el-select>
       </el-form-item>
-      <el-form-item prop="status" label="Status">
-        <el-select v-model="equipment.status" placeholder="Please select Status">
+      <el-form-item prop="status" :label="$t('equipment.status')">
+        <el-select v-model="equipment.status" :placeholder="$t('equipment.placeholder.status')">
           <el-option label="SomeEnum" value="active"></el-option>
         </el-select>
       </el-form-item>
-      <el-form-item prop="checkList" label="Checklist">
-        <el-select v-model="equipment.checkList" placeholder="Please select Inspection checklist">
+      <el-form-item prop="checkList" :label="$t('equipment.checklist')">
+        <el-select v-model="equipment.checkList" :placeholder="$t('equipment.placeholder.checklist')">
           <el-option label="SomeChecklist" value="active"></el-option>
         </el-select>
       </el-form-item>
@@ -38,15 +38,16 @@
                 filterable
                 allow-create
                 default-first-option
-                placeholder="Choose labels">
+                :placeholder="$t('equipment.placeholder.labels')">
         </el-select>
       </el-form-item>
-      <el-form-item prop="notes" label="Notes">
+      <el-form-item prop="notes" :label="$t('equipment.notes')">
           <el-input type="textarea" v-model="equipment.notes"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="onSubmit">Create</el-button>
-        <el-button @click="onCancel">Cancel</el-button>
+        <el-button v-if="['EditEquipment'].indexOf(this.$route.name) > -1" type="primary" @click="onSubmit">{{ $t("equipment.button.update") }}</el-button>
+        <el-button v-else type="primary" @click="onSubmit">{{ $t("equipment.button.create") }}</el-button>
+        <el-button @click="onCancel">{{ $t("equipment.button.cancel") }}</el-button>
       </el-form-item>
     </el-form>
   </div>
