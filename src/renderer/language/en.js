@@ -4,6 +4,7 @@ export const en = {
     number: 'Number',
     fname: 'First Name',
     lname: 'Last Name',
+    name: ' Name',
     status: 'Status',
     email: 'Email',
     labels: 'Labels',

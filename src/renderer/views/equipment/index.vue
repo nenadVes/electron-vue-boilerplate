@@ -12,9 +12,13 @@
           :data="activeEquipment"
           style="width: 100%">
     <el-table-column
-            prop="description"
             :label="$t('equipment.description')"
-            width="180">
+            width="200">
+      <template scope="scope">
+        <span>{{scope.row.description}}<br></span>
+        <span style="font-size: 13px;">{{scope.row.make}}<br></span>
+        <span style="font-size: 11px;">{{scope.row.model}}</span>
+      </template>
     </el-table-column>
     <el-table-column
             prop="keywords"
@@ -22,8 +26,7 @@
     </el-table-column>
     <el-table-column
             prop="tasks"
-            :label="$t('equipment.tasks')"
-            width="100">
+            :label="$t('equipment.tasks')">
     </el-table-column>
    <el-table-column
             :label="$t('equipment.actions')"

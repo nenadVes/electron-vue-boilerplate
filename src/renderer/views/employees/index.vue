@@ -17,12 +17,10 @@
             width="180">
     </el-table-column>
     <el-table-column
-            prop="fname"
-            :label="$t('employees.fname')">
-    </el-table-column>
-    <el-table-column
-            prop="lname"
-            :label="$t('employees.lname')">
+            :label="$t('employees.name')">
+      <template scope="scope">
+        <span>{{scope.row.fname}} {{scope.row.lname}}</span>
+      </template>
     </el-table-column>
     <el-table-column
             prop="status"
