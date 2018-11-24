@@ -4,19 +4,21 @@ import app from './modules/app'
 import user from './modules/user'
 import employees from './modules/employees'
 import equipment from './modules/equipment'
+import tasks from './modules/tasks'
 import getters from './getters'
 import localForage from 'localforage'
 import { asyncForEach } from './../utils/helpers'
 
 Vue.use(Vuex)
 
-const PRESERVABLE_STATES = ['employees', 'equipment']
+const PRESERVABLE_STATES = ['employees', 'equipment', 'tasks']
 
 const store = new Vuex.Store({
   modules: {
     app,
     employees,
     equipment,
+    tasks,
     user
   },
   getters,

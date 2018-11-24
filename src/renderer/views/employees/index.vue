@@ -18,7 +18,7 @@
     </el-table-column>
     <el-table-column
             :label="$t('employees.name')">
-      <template scope="scope">
+      <template slot-scope="scope">
         <span>{{scope.row.fname}} {{scope.row.lname}}</span>
       </template>
     </el-table-column>

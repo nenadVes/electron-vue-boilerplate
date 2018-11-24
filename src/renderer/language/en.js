@@ -73,5 +73,42 @@ export const en = {
   controlPanel: {
     title: 'Control Panel',
     backupDb: 'Backup Database'
+  },
+  task: {
+    name: 'Task',
+    notes: 'Notes',
+    type: 'Type',
+    actions: 'Actions',
+    requestor: 'Requestor',
+    serialNumber: 'Serial Number',
+    assetType: 'Asset Type',
+    status: 'Status',
+    checklist: 'Check List',
+    labels: 'Labels',
+    repairTitle: 'Repair task',
+    preventTitle: 'Prevent title',
+    additionalTitle: 'Additional information',
+    dueEvery: 'Due Every',
+    advanceNotice: 'Advance Notice',
+    expectedLabor: 'Expected Labor',
+    dueBy: 'Due By',
+    priority: 'Priority',
+    button: {
+      search: 'Search',
+      new: 'New Task',
+      create: 'Create Task',
+      update: 'Update Task',
+      cancel: 'Cancel',
+      edit: 'Edit',
+      delete: 'Delete'
+    },
+    placeholder: {
+      checklist: 'Choose a checklist',
+      assetType: 'Choose an asset type',
+      status: 'Choose a status',
+      labels: 'Choose labels',
+      priority: 'Choose priority'
+    },
+    inputText: 'Please input'
   }
 }

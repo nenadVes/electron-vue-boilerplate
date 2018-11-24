@@ -14,7 +14,7 @@
     <el-table-column
             :label="$t('equipment.description')"
             width="200">
-      <template scope="scope">
+      <template slot-scope="scope">
         <span>{{scope.row.description}}<br></span>
         <span style="font-size: 13px;">{{scope.row.make}}<br></span>
         <span style="font-size: 11px;">{{scope.row.model}}</span>
