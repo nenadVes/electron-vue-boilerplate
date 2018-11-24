@@ -6,12 +6,13 @@
       </el-row>
     </el-header>
     <el-table
-          :data="activeRepairTasks"
+          :data="activeTasksByEquipmentID"
           style="width: 100%">
       <el-table-column
-              width="20">
+              width="30">
         <template slot-scope="scope">
-          <span><svg-icon icon-class="eye" /></span>
+          <span v-if="scope.row.type === '1'"><svg-icon icon-class="repair" /></span>
+          <span v-else><svg-icon icon-class="preventive" /></span>
         </template>
       </el-table-column>
     <el-table-column
@@ -23,9 +24,23 @@
             prop="status"
             :label="$t('task.status')">
     </el-table-column>
-    <el-table-column
-            prop="requestor"
-            :label="$t('task.requestor')">
+    <el-table-column>
+      <template slot-scope="scope">
+        <span v-if="scope.row.type === '1'"><b>Due by:</b> {{scope.row.dueBy}}</span>
+        <span v-else><b>Recurring every:</b> {{scope.row.dueEvery}} days</span>
+      </template>
+    </el-table-column>
+    <el-table-column>
+      <template slot-scope="scope">
+        <span v-if="scope.row.type === '1'"><b>Priority:</b> {{scope.row.priority}}</span>
+        <span v-else><b>Advance notice:</b> {{scope.row.advanceNotice}}</span>
+      </template>
+    </el-table-column>
+    <el-table-column>
+      <template slot-scope="scope">
+        <span v-if="scope.row.type === '1'"><b>Requested by:</b> {{scope.row.requestor}}</span>
+        <span v-else><b>Last performed on:</b> <span v-if="scope.row.lastPerformed != ''">{{scope.row.lastPerformed}}</span><span v-else>Never</span></span>
+      </template>
     </el-table-column>
     <el-table-column
             :label="$t('task.actions')"
@@ -45,8 +60,8 @@
 <script>
   export default {
     computed: {
-      activeRepairTasks() {
-        return this.$store.getters['activeRepairTasks']()
+      activeTasksByEquipmentID() {
+        return this.$store.getters['activeTasksByEquipmentID'](this.equipment.id)
       }
     },
     data() {

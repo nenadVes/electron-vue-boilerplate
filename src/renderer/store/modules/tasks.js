@@ -2,6 +2,7 @@ import Vue from 'vue'
 import localForage from 'localforage'
 import { Task } from '../../models/task.model'
 import _findIndex from 'lodash/findIndex'
+import _find from 'lodash/find'
 
 const tasks = {
   state: {
@@ -38,7 +39,8 @@ const tasks = {
   getters: {
     tasks: state => state.tasks,
     activeTasks: state => () => state.tasks.filter(task => !task.deleted_at).map(task => new Task(task, state.tasks)),
-    activeRepairTasks: state => () => state.tasks.filter(task => !task.deleted_at).filter(task => task.type === '1').map(task => new Task(task, state.tasks))
+    getTaskById: state => (id) => new Task(_find(state.tasks, { id }), state.tasks),
+    activeTasksByEquipmentID: state => (id) => state.tasks.filter(task => !task.deleted_at).filter(task => task.equipment === id).map(task => new Task(task, state.tasks))
   }
 }
 

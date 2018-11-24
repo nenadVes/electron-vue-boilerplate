@@ -126,8 +126,15 @@ export const constantRouterMap = [
         path: 'addTask',
         hidden: true,
         name: 'AddTask',
-        component: () => import('@/components/Equipment/addTask'),
+        component: () => import('@/views/task/add'),
         meta: { title: 'Add Task' }
+      },
+      {
+        path: 'editTask',
+        hidden: true,
+        name: 'EditTask',
+        component: () => import('@/views/task/edit'),
+        meta: { title: 'Edit Task' }
       }
     ]
   },

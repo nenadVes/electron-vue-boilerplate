@@ -21,7 +21,7 @@
 <script>
   import { mapGetters } from 'vuex'
   import AddEditForm from '../../components/Equipment/addedit'
-  import TaskTables from '../../components/Equipment/taskTables'
+  import TaskTables from '../task/index'
   export default {
     computed: {
       ...mapGetters([

@@ -32,11 +32,11 @@
         <el-form-item prop="requestor" :label="$t('task.requestor')">
           <el-autocomplete
                   class="inline-input"
-                  v-model="task.requestor"
+                  v-model="state1"
                   :fetch-suggestions="querySearch"
                   placeholder="Please Input"
-                  :trigger-on-focus="false"
-                  value-key="fname"
+                  value-key="name"
+                  @select="handleSelect"
           ></el-autocomplete>
         </el-form-item>
         <el-form-item prop="priority" :label="$t('task.priority')">
@@ -97,7 +97,6 @@
 <script>
   import { taskRules } from '../../utils/rules'
   import { mapGetters } from 'vuex'
-  import { Task } from '../../models/task.model'
 
   export default {
     computed: {
@@ -113,23 +112,21 @@
       return {
         rules: taskRules,
         equipment: {},
-        task: new Task({}, this.$store.getters['tasks'])
+        state1: ''
       }
     },
     props: {
-      // task: Object
+      task: Object
     },
     methods: {
       onCancel() {
-        this.$router.go(-1)
+        this.$emit('onCancel')
       },
       onSubmit() {
         this.$refs['task'].validate((valid) => {
           if (valid) {
-            this.$message('Task is successfully created')
             this.task.equipment = this.equipment.id
-            this.$store.dispatch('AddTask', this.task)
-            this.$router.go(-1)
+            this.$emit('onSubmit', this.task)
           } else {
             return false
           }
@@ -138,13 +135,21 @@
       querySearch(queryString, cb) {
         const employees = this.employees
         const results = queryString ? employees.filter(this.createFilter(queryString)) : employees
+        const filteredResults = []
+        results.forEach(function(employee) {
+          employee.name = employee.fname + ' ' + employee.lname
+          filteredResults.push(employee)
+        })
         // call callback function to return suggestions
-        cb(results)
+        cb(filteredResults)
       },
       createFilter(queryString) {
         return (employee) => {
           return (employee.fname.toLowerCase().indexOf(queryString.toLowerCase()) === 0)
         }
+      },
+      handleSelect(item) {
+        this.task.requestor = item.id
       }
     },
     mounted() {
