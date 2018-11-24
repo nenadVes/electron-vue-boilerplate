@@ -54,6 +54,7 @@
   },
   "dependencies": {
     "axios": "0.17.1",
+    "electron-dl": "^1.12.0",
     "element-ui": "2.3.4",
     "localforage": "^1.7.3",
     "localforage-getitems": "^1.4.2",

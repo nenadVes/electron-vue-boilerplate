@@ -69,5 +69,9 @@ export const en = {
       labels: 'Choose labels'
     },
     inputText: 'Please input'
+  },
+  controlPanel: {
+    title: 'Control Panel',
+    backupDb: 'Backup Database'
   }
 }

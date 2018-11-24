@@ -136,6 +136,18 @@ export const constantRouterMap = [
       }
     ]
   },
+  {
+    path: '/control-panel',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'ControlPanel',
+        component: () => import('@/views/control-panel/index'),
+        meta: { title: 'Control Panel', icon: 'example' }
+      }
+    ]
+  },
 
   { path: '*', redirect: '/404', hidden: true }
 ]
