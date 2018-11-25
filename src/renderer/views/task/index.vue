@@ -21,25 +21,28 @@
             width="200">
     </el-table-column>
     <el-table-column
-            prop="status"
             :label="$t('task.status')">
-    </el-table-column>
-    <el-table-column>
       <template slot-scope="scope">
-        <span v-if="scope.row.type === '1'"><b>Due by:</b> {{scope.row.dueBy}}</span>
-        <span v-else><b>Recurring every:</b> {{scope.row.dueEvery}} days</span>
+        <span v-if="scope.row.status > 0">Due in {{scope.row.status}} days</span>
+        <span style="color:red" v-else>Due {{scope.row.status * -1}} days ago</span>
       </template>
     </el-table-column>
     <el-table-column>
       <template slot-scope="scope">
-        <span v-if="scope.row.type === '1'"><b>Priority:</b> {{scope.row.priority}}</span>
-        <span v-else><b>Advance notice:</b> {{scope.row.advanceNotice}}</span>
+        <span v-if="scope.row.type === '1'"><b>Due by:</b><br>{{scope.row.dueBy}}</span>
+        <span v-else><b>Recurring every:</b><br> {{scope.row.dueEvery}} days</span>
       </template>
     </el-table-column>
     <el-table-column>
       <template slot-scope="scope">
-        <span v-if="scope.row.type === '1'"><b>Requested by:</b> {{scope.row.requestor}}</span>
-        <span v-else><b>Last performed on:</b> <span v-if="scope.row.lastPerformed != ''">{{scope.row.lastPerformed}}</span><span v-else>Never</span></span>
+        <span v-if="scope.row.type === '1'"><b>Priority:</b><br> {{scope.row.priority}}</span>
+        <span v-else><b>Advance notice:</b><br> {{scope.row.advanceNotice}}</span>
+      </template>
+    </el-table-column>
+    <el-table-column>
+      <template slot-scope="scope">
+        <span v-if="scope.row.type === '1'"><b>Requested by:</b><br> {{scope.row.requestor}}</span>
+        <span v-else><b>Last performed on:</b><br> <span v-if="scope.row.lastPerformed != ''">{{scope.row.lastPerformed}}</span><span v-else>Never</span></span>
       </template>
     </el-table-column>
     <el-table-column
@@ -58,10 +61,20 @@
 </template>
 
 <script>
+  import { parseTime } from '../../utils/index'
+
   export default {
     computed: {
       activeTasksByEquipmentID() {
-        return this.$store.getters['activeTasksByEquipmentID'](this.equipment.id)
+        const tasks = this.$store.getters['activeTasksByEquipmentID'](this.equipment.id)
+        tasks.forEach(task => {
+          if (task.type === '1') {
+            const employee = this.$store.getters['getEmployeeById'](task.requestor)
+            task.requestor = employee.fname + ' ' + employee.lname
+            task.dueBy = parseTime(task.dueBy, '{y}-{m}-{d}')
+          }
+        })
+        return tasks
       }
     },
     data() {
@@ -92,3 +105,8 @@
     }
   }
 </script>
+<style scoped>
+  span {
+    display: block;
+  }
+</style>

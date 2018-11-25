@@ -20,6 +20,7 @@ const tasks = {
 
   actions: {
     AddTask({ commit, state }, formdata) {
+      formdata.created_at = new Date()
       commit('ADD_TASK', formdata)
       saveToLocalForage(state.tasks)
     },

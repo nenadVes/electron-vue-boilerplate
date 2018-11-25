@@ -10,7 +10,7 @@ export class Task extends BaseModel {
     this.notes = data.notes || ''
     this.type = data.type || ''
     this.status = data.status || ''
-    this.created = data.created || ''
+    this.created_at = data.created_at || ''
     this.closed = data.closed || ''
     this.labels = data.labels || ''
     this.expectedLabor = data.expectedLabor || ''

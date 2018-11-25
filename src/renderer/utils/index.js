@@ -56,3 +56,30 @@ export function formatTime(time, option) {
     return d.getMonth() + 1 + '月' + d.getDate() + '日' + d.getHours() + '时' + d.getMinutes() + '分'
   }
 }
+
+export function calculateDifference(today, task) {
+  let msDiff = 0
+  if (task.type === '1') {
+    // case for repair requests, only dueBy to use
+    msDiff = task.dueBy - today
+  } else {
+    // case for preventive tasks, only created_at, last performed, dueEvery to be used
+    let dueDate = new Date()
+    if (task.lastPerformed) {
+      dueDate = addDays(task.lastPerformed, task.dueEvery)
+    } else {
+      if (task.created_at) {
+        dueDate = addDays(task.created_at, task.dueEvery)
+      } else {
+        // task is created today
+        dueDate = addDays(dueDate, task.dueEvery)
+      }
+    }
+    msDiff = dueDate - today
+  }
+  return parseInt(Math.floor(msDiff / 86400000))
+}
+function addDays(date, days) {
+  date.setDate(date.getDate() + parseInt(days))
+  return date
+}

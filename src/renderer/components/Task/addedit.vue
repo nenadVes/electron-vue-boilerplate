@@ -97,6 +97,7 @@
 <script>
   import { taskRules } from '../../utils/rules'
   import { mapGetters } from 'vuex'
+  import { calculateDifference } from '../../utils/index'
 
   export default {
     computed: {
@@ -126,6 +127,8 @@
         this.$refs['task'].validate((valid) => {
           if (valid) {
             this.task.equipment = this.equipment.id
+            const today = new Date()
+            this.task.status = calculateDifference(today, this.task)
             this.$emit('onSubmit', this.task)
           } else {
             return false
